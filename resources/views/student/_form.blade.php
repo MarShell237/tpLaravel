@@ -1,4 +1,3 @@
-
 <div class="form-group">
     <label for="nom">Nom</label>
     <input type="text" class="form-control" id="nom" ariadescribedby="emailHelp" placeholder="Entrez un nom"name="name" required>
@@ -6,7 +5,7 @@
 <div class="form-group">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" ariadescribedby="emailHelp" placeholder="Entrez un email" name="email" required>
-    <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre e-mail avecquelqu'un d'autre.</small>
+    <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre e-mail avec quelqu'un d'autre.</small>
 </div>
 <div class="form-group">
     <label for="phone">Telephone</label>
@@ -24,4 +23,3 @@
         @endforeach
     </select>
 </div>
-Ainsi, vous aurez déjà une vue de listings 

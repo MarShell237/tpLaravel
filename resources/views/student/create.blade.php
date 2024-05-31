@@ -6,11 +6,12 @@
             <h4 style="color: black">Ajout des etudiants</h4>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('student.store') }}">
+            <form method="post" action="{{ route('student.store') }}">
             @csrf
-            @include('student.form')
+            @method('post')
+            @include('student._form')
             <div class="mt-2">
-                <button type="submit" class="btn btnsuccess">Ajouter</button>
+                <button type="submit" class="btn btn-success">Ajouter</button>
             </div>
             </form>
         </div>

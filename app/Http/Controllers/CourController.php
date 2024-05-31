@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cour;
+use App\Models\Cour;
 use Illuminate\Http\Request;
 use App\Models\Filiere;
 
@@ -14,8 +14,8 @@ class CourController extends Controller
     public function index()
     {
         //
-        $cour = cour::paginate(5);
-        return view('cour.index', compact('cour'));
+        $cours = Cour::paginate(5);
+        return view('cour.index', compact('cours'));
     }
 
     /**
@@ -34,47 +34,46 @@ class CourController extends Controller
      */
     public function store(Request $request)
     {
-        //
-      /*  $data=$request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'filiere_id' => 'required|exists:filieres,id',
-            
+            $data=$request->validate([
+                'name' => 'required',
+                'description' => 'required',
+                'filiere_id' => 'required|exists:filieres,id',
             ]);
-            $data = $request->except('_token');*/
-            cour::create($request->all());
+            Cour::create($data);
             return redirect()->route('cour.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(cour $cour)
-    {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(cour $cour)
+    public function edit(Cour $cour)
     {
-        //
+        return view('cour.update',[
+            'cour'=> $cour,
+            'filieres'=>Filiere::pluck('name','id')
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, cour $cour)
+    public function update(Request $request, Cour $cour)
     {
-        //
+        $data=$request->validate([
+            'name'=>'required',
+            'description' => 'nullable',
+            'filiere_id' => 'required|exists:filieres,id',
+            ]);
+            $cour->update($data);
+            return redirect()->route('cour.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(cour $cour)
+    public function destroy(Cour $cour)
     {
-        //
+        $cour->delete();
+        return to_route('cour.index');
     }
 }

@@ -24,16 +24,22 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    @forelse ($students as $item)
+                    @forelse ($students as $student)
                         <tr>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{{ $item->phone }}</td>
-                        <td>{{ $item->birthdate }}</td>
-                        <td>{{ $item->filiere->name }}</td>
+                        <td>{{ $student->name }}</td>
+                        <td>{{ $student->email }}</td>
+                        <td>{{ $student->phone }}</td>
+                        <td>{{ $student->birthdate }}</td>
+                        <td>{{ $student->filiere->name }}</td>
                         <td>
-                            <a href="{{ route('student.destroy') }}"><button class="btn btn-danger" >supprimer</button></a>
-                            <a href="{{ route('student.edit',$item->id) }}"><button class="btn btn-danger" >mis a jour</button></a>
+                            <div>
+                                <a href="{{ route('student.edit',$student) }}"><button class="btn btn-primary">editer</button></a>
+                                <form action="{{ route('student.destroy',$student) }}" method="POST" style="display: inline">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button class="btn btn-danger">supprimer</button>
+                                </form>
+                            </div>
                         </td>
                         </tr>
                     @empty
